@@ -1,0 +1,26 @@
+# simulator outputs
+*.vvp
+*.vcd
+*.out
+*.log
+*.tmp
+*.bak
+*.orig
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# IDE and OS metadata
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# generated reports
+results/*.log
+simulation_results.txt
+
+# local tool artifacts
+*.svcd
+*.fst
