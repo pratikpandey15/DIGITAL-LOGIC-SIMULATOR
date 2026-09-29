@@ -24,6 +24,10 @@ def main():
             print(f"{category} tests failed with exit code {proc.returncode}")
             return proc.returncode
 
+    report_script = ROOT / "scripts" / "generate_report.py"
+    print("\nGenerating summary report...")
+    subprocess.run([sys.executable, str(report_script)], cwd=str(ROOT), check=False)
+
     print("\nAll configured tests completed.")
     return 0
 

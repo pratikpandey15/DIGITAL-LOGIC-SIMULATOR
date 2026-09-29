@@ -6,6 +6,9 @@
 *.tmp
 *.bak
 *.orig
+build/
+waveforms/
+simulations/
 
 # Python cache
 __pycache__/

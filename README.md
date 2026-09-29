@@ -1,14 +1,70 @@
 # Digital Logic Simulator
 
-A professional educational repository for digital logic design, Verilog RTL modeling, waveform analysis, and reusable simulation workflows. The project demonstrates how Boolean logic, combinational circuits, arithmetic blocks, sequential systems, state machines, and memory structures are modeled and verified using HDL simulation tools.
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Verilog](https://img.shields.io/badge/HDL-Verilog-orange.svg)](https://www.icarus.com/eda/verilog/)
+[![Simulation](https://img.shields.io/badge/Simulation-Icarus%20Verilog-blue.svg)](https://github.com/steveicarus/iverilog)
+[![Waveform](https://img.shields.io/badge/Waveform-GTKWave-purple.svg)](https://gtkwave.sourceforge.net/)
+
+A professional educational repository for digital logic design, RTL modeling, Verilog simulation, and waveform-based verification. This project demonstrates how digital circuits are designed, simulated, and validated using HDL tools in a clean, portfolio-friendly structure.
+
+## Project Status
+
+- Status: Active educational RTL project
+- Focus: Digital design, Verilog, HDL verification, waveform debugging
+- Target use: learning, portfolio demonstration, academic/engineering practice
+- Simulator dependency: Icarus Verilog + GTKWave (required for full execution)
 
 ## Overview
 
-This project is designed for students and engineers who want to understand how digital systems are modeled in HDL, simulated, and verified. The repository follows the full design flow:
+This repository is intended for students and engineers who want to learn how digital systems are modeled in Verilog and validated through simulation. The project follows a realistic engineering flow:
 
 Digital Circuit
       ↓
 Verilog RTL
+      ↓
+Testbench Stimulus
+      ↓
+Icarus Verilog Simulation
+      ↓
+VCD Waveform Generation
+      ↓
+GTKWave Analysis
+
+The emphasis is on practical understanding: logic design, synthesis-friendly modeling, testbench verification, and debugging with waveforms.
+
+## Highlights
+
+- Digital logic gates: AND, OR, NOT, NAND, NOR, XOR, XNOR, buffer
+- Combinational logic: adder, subtractor, multiplexer, demultiplexer, decoder, encoder, comparator
+- Arithmetic circuits: ripple-carry adder, adder/subtractor, ALU, incrementer, decrementer
+- Sequential logic: D flip-flop, SR flip-flop, JK flip-flop, T flip-flop, registers, shift registers, counters
+- FSM-based systems: traffic light controller, sequence detector, vending machine, pedestrian controller
+- Memory structures: RAM, ROM, register file, FIFO
+- HDL simulation workflow using Icarus Verilog
+- Automated verification with Python scripts
+- Exportable VCD waveform data for GTKWave review
+- Documentation for digital logic and HDL concepts
+
+## Architecture
+
+The repository is organized by functional area to keep the design flow clear and easy to follow.
+
+- src/ contains synthesizable digital hardware modules
+- testbench/ contains verification benches and stimulus generation
+- scripts/ contains simulation and reporting automation
+- docs/ contains technical notes and concept explanations
+- build/ stores compiled simulation binaries
+- simulations/ stores execution metadata and logs
+- waveforms/ stores generated VCD files
+- results/ stores PASS/FAIL summaries
+- docs/images/ is reserved for waveform screenshots or local analysis captures
+
+### Design Flow
+
+```text
+Digital Circuit
+      ↓
+RTL / Verilog Design
       ↓
 Testbench
       ↓
@@ -16,48 +72,48 @@ Icarus Verilog
       ↓
 VCD Waveform
       ↓
-GTKWave / signal analysis
-
-The project emphasizes realistic verification, educational clarity, and a clean engineering portfolio structure.
-
-## Features
-
-- Digital logic gates: AND, OR, NOT, NAND, NOR, XOR, XNOR, buffer
-- Combinational circuits: half/full adder, subtractor, multiplexer, decoder, encoder, comparator
-- Arithmetic circuits: ripple-carry adder, adder/subtractor, ALU
-- Sequential circuits: D flip-flop, register, shift register, counter
-- FSM example: traffic light controller
-- Memory example: RAM
-- Verilog simulation flow using Icarus Verilog
-- VCD generation and waveform review
-- Python automation for running simulations and summarizing results
-- Documentation for digital logic concepts and HDL simulation
-
-## Architecture
-
-The repository is organized by functional category to make the design flow easy to follow.
-
-- src/ contains synthesizable digital hardware modules
-- testbench/ contains HDL testbenches and verification logic
-- simulations/ stores execution output and metadata
-- waveforms/ stores generated VCD waveform files
-- results/ stores summary files
-- scripts/ contains Python automation for simulation and reporting
-- docs/ contains concept explanations and design notes
+GTKWave Analysis
+      ↓
+Verification and Debugging
+```
 
 ## Repository Structure
 
-- src/gates/ — gate-level building blocks
-- src/combinational/ — arithmetic and selection logic blocks
-- src/arithmetic/ — adders, subtractor, ALU
-- src/sequential/ — flip-flops, registers, shift registers, counters
-- src/fsm/ — finite-state-machine examples
-- src/memory/ — memory models
-- testbench/ — testbenches for verification
-- scripts/ — automation layer for simulation and reporting
-- docs/ — technical notes and design documentation
-- waveforms/ — waveform output files
-- results/ — verification summaries
+```text
+.
+├── LICENSE
+├── Makefile
+├── README.md
+├── requirements.txt
+├── .gitignore
+├── docs/
+│   ├── architecture.md
+│   ├── digital_logic_notes.md
+│   └── images/
+├── scripts/
+│   ├── run_simulation.py
+│   ├── run_all_tests.py
+│   └── generate_report.py
+├── src/
+│   ├── gates/
+│   ├── combinational/
+│   ├── arithmetic/
+│   ├── sequential/
+│   ├── fsm/
+│   └── memory/
+├── testbench/
+│   ├── gates/
+│   ├── combinational/
+│   ├── arithmetic/
+│   ├── sequential/
+│   ├── fsm/
+│   └── memory/
+├── build/
+├── simulations/
+├── waveforms/
+├── results/
+└── .vscode/
+```
 
 ## Supported Modules
 
@@ -65,22 +121,37 @@ The repository is organized by functional category to make the design flow easy 
 | --- | --- | --- | --- | --- |
 | AND, OR, NOT, NAND, NOR, XOR, XNOR, Buffer | Gates | Verilog | Included | Generated by simulator |
 | Half Adder, Full Adder, Half Subtractor, Full Subtractor | Combinational | Verilog | Included | Generated by simulator |
-| 2:1 Mux, 4:1 Mux, 2:4 Decoder, 3:8 Decoder, Priority Encoder | Combinational | Verilog | Included | Generated by simulator |
+| 2:1 Mux, 4:1 Mux, 1:2 Demux, 2:4 Decoder, 3:8 Decoder, 4:2 Encoder, Priority Encoder | Combinational | Verilog | Included | Generated by simulator |
 | Comparator 4-bit | Combinational | Verilog | Included | Generated by simulator |
-| Ripple Carry Adder, Adder/Subtractor, ALU | Arithmetic | Verilog | Included | Generated by simulator |
-| D Flip-Flop, Register, Shift Register, Counter | Sequential | Verilog | Included | Generated by simulator |
-| Traffic Light Controller | FSM | Verilog | Included | Generated by simulator |
-| RAM | Memory | Verilog | Included | Generated by simulator |
+| Ripple Carry Adder, Adder/Subtractor, ALU, Incrementer, Decrementer | Arithmetic | Verilog | Included | Generated by simulator |
+| D Flip-Flop, SR Flip-Flop, JK Flip-Flop, T Flip-Flop, Register, Shift Register, Counters, Ring Counter, Johnson Counter | Sequential | Verilog | Included | Generated by simulator |
+| Traffic Light Controller, Sequence Detector, Vending Machine, Pedestrian Controller | FSM | Verilog | Included | Generated by simulator |
+| RAM, ROM, Register File, Synchronous FIFO | Memory | Verilog | Included | Generated by simulator |
+
+## Quick Start
+
+```bash
+# 1) Install simulator tools
+# Ubuntu/Debian
+sudo apt update
+sudo apt install iverilog gtkwave
+
+# 2) Run the full test sequence
+python scripts/run_all_tests.py
+
+# 3) Open a generated waveform in GTKWave
+# Example: gtkwave full_adder_wave.vcd
+```
 
 ## Installation
 
-### Git
+### 1. Install Git
 
 ```bash
 git --version
 ```
 
-### Icarus Verilog
+### 2. Install Icarus Verilog
 
 #### Ubuntu / Debian
 
@@ -103,9 +174,9 @@ brew install icarus-verilog gtkwave
 
 #### Windows
 
-Use a package manager such as winget, MSYS2, or another Windows-compatible distribution of the Icarus Verilog toolchain when available.
+Use a package manager such as winget, MSYS2, or a Windows-compatible Icarus Verilog distribution if available.
 
-### Python
+### 3. Install Python
 
 ```bash
 python --version
@@ -113,14 +184,18 @@ python --version
 
 ## Running a Simulation
 
-Once Icarus Verilog is installed, run a manual example:
+After installing the toolchain, compile and run a sample design:
 
 ```bash
-iverilog -g2012 -o build/full_adder_sim src/combinational/half_adder.v src/combinational/full_adder.v testbench/combinational/full_adder_tb.v
+iverilog -g2012 -o build/full_adder_sim \
+  src/combinational/half_adder.v \
+  src/combinational/full_adder.v \
+  testbench/combinational/full_adder_tb.v
+
 vvp build/full_adder_sim
 ```
 
-Then open the generated waveform in GTKWave:
+To inspect the generated waveform:
 
 ```bash
 gtkwave full_adder_wave.vcd
@@ -128,10 +203,11 @@ gtkwave full_adder_wave.vcd
 
 ## Automated Testing
 
-The project includes Python automation for running the test suite when the simulator is installed:
+The project includes Python-based automation and Makefile targets for running the test suite.
 
 ```bash
 python scripts/run_all_tests.py
+python scripts/generate_report.py
 ```
 
 Or use the Makefile:
@@ -148,46 +224,59 @@ make test-memory
 
 ## Waveform Analysis
 
-Open the waveform in GTKWave and inspect:
+Open the generated VCD files in GTKWave and inspect:
 
-- Clock edges and reset behavior
-- Input signal transitions
-- Output transitions and timing
-- State machine transitions for FSM modules
-- Data write and read operations for memory modules
+- clock edges and reset behavior
+- input signal timing
+- output transitions
+- combinational logic propagation
+- state transitions for FSM modules
+- memory read/write operations
 
-Waveform analysis is essential because it confirms whether the hardware matches the intended logic, not just whether the code compiles.
+Waveform analysis is essential for verifying behavior that cannot be seen from the HDL code alone.
 
-## Verification
+## Verification Philosophy
 
-Each testbench compares expected outputs with actual outputs and prints PASS/FAIL information. The design flow is:
+The repository follows the design flow:
 
 DESIGN → SIMULATE → VERIFY → ANALYZE
 
-The repository emphasizes real verification over placeholder results. If the Verilog simulator is not installed, the Python scripts print a clear message instead of claiming fake simulation success.
+Each testbench is intended to apply real stimulus, monitor outputs, and report PASS/FAIL results. The project emphasizes engineering verification instead of placeholder results or fake success claims.
+
+### Verification checklist
+
+- compile hardware design
+- run simulation with testbench stimulus
+- inspect output values and state transitions
+- confirm expected behavior with PASS/FAIL checks
+- open waveform in GTKWave for timing and logic debugging
 
 ## Learning Outcomes
+
+This project is designed to build understanding in:
 
 - Boolean algebra and logic minimization
 - Combinational logic design
 - Sequential logic and timing
 - Finite-state machine design
 - RTL modeling in Verilog
-- Testbench design and verification
+- Testbench development
 - Simulation and waveform debugging
-- Hardware validation methodology
+- Hardware verification methodology
 
 ## Future Improvements
 
-Future extensions could include:
+Potential extensions include:
 
-- Interactive GUI-based digital circuit editor
-- Drag-and-drop logic blocks
-- Real-time waveform visualization
-- More advanced memory models and register files
-- CPU datapath and microarchitecture units
+- interactive GUI-based circuit editor
+- drag-and-drop logic design tools
+- real-time waveform visualization
+- more advanced memory and datapath models
+- CPU datapath and microarchitecture examples
 - SystemVerilog assertions and coverage
-- Export/import of circuit designs
+- import/export of circuit designs
+
+These are future enhancements and are not claimed as already implemented.
 
 ## License
 
